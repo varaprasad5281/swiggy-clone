@@ -3,7 +3,7 @@ const Shimer=()=>{
 
         <div className="restaurant-list">
 
-            {Array(19)
+            {Array(18)
             .fill("")
             .map((e,index) =>{
                 return <div key={index} className="shimer-card"></div>

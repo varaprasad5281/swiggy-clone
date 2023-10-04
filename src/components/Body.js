@@ -6,6 +6,7 @@ import {useState,useEffect} from 'react'
 // import { filterData } from './utils/Helper';
 import Shimer from './Shimer';
 import { Link } from 'react-router-dom';
+import { FETCH_RESTAURANT_URL } from '../constants';
 
 
 
@@ -20,7 +21,7 @@ const Body=()=>{
     },[])
 
     async function getRestaurants(){
-      const data=await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=17.385044&lng=78.486671&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+      const data=await fetch(FETCH_RESTAURANT_URL);
       const json=await data.json()
       // optional Chaining(if my data was not there then it will break in this case we use optional chaining)
       setAllRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
@@ -63,7 +64,7 @@ const Body=()=>{
         <div className='restaurant-list'>
           {filteredRestaurants.map((restaurant)=>{
             return (
-            <Link to ={"/restaurant/"+restaurant.data?.cards[0]?.card?.card?.info?.id}><RestaurantCard {...restaurant.info} key={restaurant.data?.card?.card?.info?.id}/></Link>
+            <Link to ={"/restaurant/"+restaurant.info.id}><RestaurantCard {...restaurant.info}/></Link>
             )
           })}
         </div>
