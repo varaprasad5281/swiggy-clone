@@ -7,6 +7,7 @@ import {useState,useEffect} from 'react'
 import Shimer from './Shimer';
 import { Link } from 'react-router-dom';
 import { FETCH_RESTAURANT_URL } from '../constants';
+import useOnline from './utils/useOnline';
 
 
 
@@ -30,7 +31,10 @@ const Body=()=>{
     
     }
 
-
+    const isOnline=useOnline()
+    if(!isOnline){
+      return <h1> Oops ! You're Offline , Please check your Internet Connection !!</h1>
+    }
 
 // Not render component(Early return)
     if(!allRestaurants) return null;

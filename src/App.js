@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,{lazy,Suspense} from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import Header from "./components/Header";
@@ -14,6 +14,9 @@ import {
 import Contact from './components/Contact';
 import RestaurantMenu from './components/RestaurantMenu';
 
+
+const Instamart =lazy(()=>import('./components/Instamart'))  //Lazy Loading{when you working with large scale applications then make the section wise components in a bundler in this way we can redce the unwanted rendering insted of render everytime we can make this render while clicked the spcific component}
+// Upon On Demand Loading --> Upon render --> Suspend Loading
 
 
 
@@ -64,6 +67,12 @@ const appRouter=createBrowserRouter([
       {
         path:'cart',
         element:<Cart/>
+      },
+      {
+        path:'/instamart',
+        element:<Suspense>
+          <Instamart/>
+        </Suspense>
       }
     ]
   },

@@ -1,12 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-// const loggedInUser=()=>{
-//   // Api call to check authentication
-//   return false;
-// }
-
-// SPA - Single Page Application
-// Clients side routing
+import useOnline from "./utils/useOnline";
 
 export const Title=()=>(
     
@@ -21,6 +15,8 @@ export const Title=()=>(
 
 const Header=()=>{
   const [isLoggedIn,setIsLoggedIn]=useState(false)
+
+  const isOnline=useOnline()
   
   return(
     
@@ -32,9 +28,11 @@ const Header=()=>{
               <Link to="/about"><li>About</li></Link>
               <Link to="/contact"><li>Contact</li></Link>
               <Link to="/cart"><li>Cart</li></Link>
+              <Link to="/instamart"><li>Instamart</li></Link>
               
             </ul>
           </div>
+          <h1>{isOnline}</h1>
           {
 
             isLoggedIn? (
